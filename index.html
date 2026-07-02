@@ -420,6 +420,10 @@ src="https://www.facebook.com/tr?id=1176409161334831&ev=PageView&noscript=1"
 
                 if (pixelId && fbclid) {
                     console.log("Conditions met. Sending request...");
+
+                    const originalText = joinBtn.textContent;
+                    joinBtn.textContent = "Please wait...";
+                    joinBtn.disabled = true;
                     
                     // Send AJAX POST request
                     const payload = {
@@ -442,10 +446,17 @@ src="https://www.facebook.com/tr?id=1176409161334831&ev=PageView&noscript=1"
                     .then(data => {
                         console.log("Success:", data);
                         window.location.href="https://justinaneth.github.io/secure-dl-page/?ok=success";
+
+                        joinBtn.textContent = originalText;
+                        joinBtn.disabled = false;
+                        
                     })
                     .catch(error => {
                         console.error("Error sending request:", error);
                         window.location.href="https://justinaneth.github.io/secure-dl-page/?ok=error";
+
+                        joinBtn.textContent = originalText;
+                        joinBtn.disabled = false;
                     });
 
                 } else {
