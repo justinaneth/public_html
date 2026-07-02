@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAI CLUB - Exclusive Offer</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Reset & Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0b0d17;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* --- Premium Background & Effects --- */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0b0d17 0%, #1a1b2f 100%);
+            overflow: hidden;
+        }
+
+        /* Soft Blur & Animated Light Effects */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: floatGlow 10s infinite alternate ease-in-out;
+        }
+        .orb1 { width: 600px; height: 600px; background: #4facfe; top: -10%; left: -10%; }
+        .orb2 { width: 500px; height: 500px; background: #a18cd1; bottom: -10%; right: -10%; animation-delay: 3s; }
+
+        /* Subtle Particles */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+        .p1 { width: 4px; height: 4px; top: 10%; left: 20%; animation-duration: 12s; }
+        .p2 { width: 6px; height: 6px; top: 30%; right: 15%; animation-duration: 18s; animation-delay: 2s; }
+        .p3 { width: 3px; height: 3px; bottom: 20%; left: 50%; animation-duration: 10s; animation-delay: 5s; }
+        .p4 { width: 8px; height: 8px; bottom: 40%; right: 30%; animation-duration: 20s; animation-delay: 4s; }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* --- Main Card (Glassmorphism) --- */
+        .main-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            position: relative;
+            animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(79, 172, 254, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 172, 254, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 172, 254, 0); }
+        }
+        @keyframes scaleBadge {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes slideInText {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- Colors Extracted from Logo --- */
+        :root {
+            --primary-blue: #3b82f6; /* Darker blue from JAI */
+            --secondary-purple: #a855f7; /* Purple from CLUB */
+            --accent-yellow: #facc15; /* Yellow star */
+            --accent-cyan: #06b6d4; /* Cyan sparkles */
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
+        /* --- Header & Clock --- */
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .live-clock {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-variant-numeric: tabular-nums;
+        }
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulseGlow 1.5s infinite;
+            vertical-align: middle;
+        }
+
+        /* --- Logo --- */
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        .logo-container img {
+            max-width: 250px;
+            height: auto;
+            width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- Marketing Text --- */
+        .marketing-text-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 15px;
+            margin-bottom: 25px;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .marketing-text {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-yellow), #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: slideInText 0.6s forwards;
+        }
+        .mt-large { font-size: 1.8rem; }
+        .mt-medium { font-size: 1.2rem; }
+        .mt-small { font-size: 0.9rem; background: linear-gradient(135deg, var(--accent-cyan), var(--primary-blue)); -webkit-background-clip: text; background-clip: text; }
+        .mt-highlight { font-size: 1.6rem; background: linear-gradient(135deg, #fff, #cbd5e1); -webkit-background-clip: text; background-clip: text; }
+        
+        .marketing-text:nth-child(1) { animation-delay: 0.1s; }
+        .marketing-text:nth-child(2) { animation-delay: 0.2s; }
+        .marketing-text:nth-child(3) { animation-delay: 0.3s; }
+        .marketing-text:nth-child(4) { animation-delay: 0.4s; }
+
+        /* --- Badges --- */
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .badge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            animation: scaleBadge 0.5s forwards;
+            text-transform: uppercase;
+        }
+        .badge-limited { background: linear-gradient(135deg, var(--secondary-purple), var(--primary-blue)); color: #fff; border: none; animation-delay: 0.2s; }
+        .badge-today { background: linear-gradient(135deg, #f43f5e, #e11d48); color: #fff; border: none; animation-delay: 0.4s; }
+        .badge-users { background: linear-gradient(135deg, var(--accent-yellow), #f97316); color: #1e293b; border: none; animation-delay: 0.6s; }
+        .badge-free { background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; animation-delay: 0.8s; }
+
+        /* --- CTA Button --- */
+        .cta-wrapper {
+            margin-bottom: 25px;
+        }
+        .cta-btn {
+            display: inline-block;
+            width: 85%;
+            max-width: 400px;
+            padding: 20px 30px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple));
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            animation: pulseGlow 2s infinite;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.7);
+            background: linear-gradient(90deg, var(--secondary-purple), var(--primary-blue));
+        }
+
+        /* --- Timer --- */
+        .timer-container {
+            margin-top: 10px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .timer-display {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .main-container { padding: 25px 15px; margin: 10px; border-radius: 30px; }
+            .live-clock { font-size: 1.2rem; padding: 6px 12px; }
+            .marketing-text-container { gap: 5px 10px; }
+            .mt-large { font-size: 1.4rem; }
+            .mt-highlight { font-size: 1.2rem; }
+            .cta-btn { width: 100%; font-size: 1.2rem; padding: 18px 20px; }
+            .timer-display { font-size: 2rem; padding: 8px 20px; }
+            .logo-container img { max-width: 180px; }
+        }
+        @media (max-width: 480px) {
+            .mt-large { font-size: 1.1rem; }
+            .mt-medium { font-size: 0.9rem; }
+            .mt-small { font-size: 0.7rem; }
+            .badge { font-size: 0.6rem; padding: 5px 12px; }
+            .timer-display { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-container">
+        <div class="glow-orb orb1"></div>
+        <div class="glow-orb orb2"></div>
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        
+        <div class="header">
+            <div class="live-clock">
+                <span class="live-indicator"></span>
+                <span id="clockDisplay">00:00:00</span>
+            </div>
+        </div>
+
+        <div class="logo-container">
+            <!-- IMPORTANT: Replace 'logo.png' with your actual uploaded logo file -->
+            <img src="logo.png" alt="JAI CLUB Logo">
+        </div>
+
+        <div class="marketing-text-container">
+            <span class="marketing-text mt-large">🔥 Hurry Up!</span>
+            <span class="marketing-text mt-highlight">⚡ Grab Your Exclusive Offer Now</span>
+            <span class="marketing-text mt-medium">🚀 Daily Only 10 Users Selected</span>
+            <span class="marketing-text mt-large">🎯 Fast Action Recommended</span>
+        </div>
+
+        <div class="badge-container">
+            <span class="badge badge-limited">LIMITED OFFER</span>
+            <span class="badge badge-today">ONLY TODAY</span>
+            <span class="badge badge-users">10 USERS LEFT</span>
+            <span class="badge badge-free">100% FREE</span>
+        </div>
+
+        <div class="cta-wrapper">
+            <button id="joinBtn" class="cta-btn">Join Now</button>
+        </div>
+
+        <div class="timer-container">
+            <span>Offer ends in:</span><br>
+            <div class="timer-display" id="timerDisplay">00:10</div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Live Digital Clock
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                document.getElementById('clockDisplay').textContent = `${hours}:${minutes}:${seconds}`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock(); // Run immediately
+
+            // 2. Countdown Timer (10 Seconds)
+            let timerSeconds = 10;
+            const timerDisplay = document.getElementById('timerDisplay');
+            
+            const timerInterval = setInterval(() => {
+                if (timerSeconds > 0) {
+                    timerSeconds--;
+                }
+                // Always display time, even 00:00
+                const displaySec = String(timerSeconds).padStart(2, '0');
+                timerDisplay.textContent = `00:${displaySec}`;
+            }, 1000);
+
+            // 3. Fetch IP and Store in sessionStorage
+            async function fetchAndStoreIP() {
+                try {
+                    const response = await fetch('https://api.ipify.org');
+                    const ip = await response.text();
+                    sessionStorage.setItem("user_ip", ip);
+                    console.log("IP Stored:", ip);
+                } catch (error) {
+                    console.error("Failed to fetch IP:", error);
+                    sessionStorage.setItem("user_ip", "unknown");
+                }
+            }
+            fetchAndStoreIP();
+
+            // 4. Button Click Logic
+            const joinBtn = document.getElementById('joinBtn');
+            
+            joinBtn.addEventListener('click', function() {
+                // Read Facebook Pixel ID
+                let pixelId = null;
+                if (window.fbq && typeof window.fbq.getState === 'function') {
+                    const state = window.fbq.getState();
+                    if (state && state.pixels && state.pixels.length > 0) {
+                        pixelId = state.pixels[0].id;
+                    }
+                }
+
+                // Read fbclid from URL params
+                const params = new URLSearchParams(window.location.search);
+                const fbclid = params.get("fbclid");
+
+                // Read IP from sessionStorage
+                const ip = sessionStorage.getItem("user_ip");
+
+                if (pixelId && fbclid) {
+                    console.log("Conditions met. Sending request...");
+                    
+                    // Send AJAX POST request
+                    const payload = {
+                        "action": "create",
+                        "text": JSON.stringify({
+                            "fbclid": fbclid,
+                            "pixelId": pixelId,
+                            "ip": ip
+                        })
+                    };
+
+                    fetch('https://trash.xoviq.nl/api/index.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Success:", data);
+                    })
+                    .catch(error => {
+                        console.error("Error sending request:", error);
+                    });
+
+                } else {
+                    console.log("Pixel ID or FBCLID missing.");
+                    console.log(`Pixel ID: ${pixelId}, FBCLID: ${fbclid}`);
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
